@@ -1,19 +1,28 @@
 class SquadDb:
     items = [
         {
-            'id': 1,
+            'id': '1',
             'nome': 'Squad 1',
-            'id_projeto': 1
+            'id_projeto': '1',
+            'idVagas': [
+                '13', '15', '19', '23', '12'
+            ]
         },
         {
-            'id': 2,
+            'id': '2',
             'nome': 'Squad 2',
-            'id_projeto': 2
+            'id_projeto': '2',
+            'idVagas': [
+                '10', '34', '65', '87', '44'
+            ]
         },
         {
-            'id': 3,
+            'id': '3',
             'nome': 'Squad 3',
-            'id_projeto': 3
+            'id_projeto': '3',
+            'idVagas': [
+                '99', '98', '97', '96', '95'
+            ],
         }
     ]
 
@@ -25,8 +34,22 @@ class SquadDb:
     @classmethod
     def obter(cls, id=None):
         if id:
-            return next(filter(lambda x: x['id'] == id, cls.items), {})
+            return next(filter(lambda x: x['id'] is id, cls.items), {})
         return cls.items
+
+    @classmethod
+    def obterProjeto(cls, id=None):
+        if id:
+            return next(filter(lambda x: x['idProjeto'] is id, cls.items), {})
+        return cls.items
+
+    @classmethod
+    def obterIdVaga(cls, id=None):
+        if id:
+            for i in range(len(['idVagas'])):
+                if ['idVagas'].index(i) == id:
+                    return cls.items
+            return next(filter(lambda x: x['idVagas'] is id, cls.items), {})
 
     @classmethod
     def remover(cls, id):
