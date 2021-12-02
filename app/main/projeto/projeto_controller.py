@@ -17,12 +17,19 @@ modelo = api.model('ProjetoModel', {
     'fimReal': fields.String,
 })
 
-
 @api.route('/')
 class ProjetoController(Resource):
     @api.response(200, "Found with success")
     def get(self):
-        return ProjetoDb.obter(), 200
+        pagina= None
+        quantidade= None
+        if request.method == 'GET':
+            if 'pagina' in request.args:
+                pagina = request.args['pagina']
+            if 'quantidade' in request.args:
+                quantidade = request.args['quantidade']
+
+        return ProjetoDb.obter(pagina, quantidade), 200
 
     @api.expect(modelo)
     def post(self):
@@ -37,27 +44,23 @@ class ProjetoIdController(Resource):
         return ProjetoDb.obter(str(id)), 200
 
     @api.response(200, "Elemento deletado com sucesso")
-    def delete(self, id: str):
+    def delete(self, id:str):
         return ProjetoDb.remover(str(id)), 200
 
-
-@api.route('/<nome>')
+@api.route('/FindByName/<nome>')
 class ProjetoNomeController(Resource):
-
     @api.response(200, "Busca realizada com sucesso")
     def get(self, nome:str):
         return ProjetoDb.obterProjetoPorNome(str(nome)), 200
 
-
-@api.route('/<localizadorJira>')
+@api.route('/Jira/<localizadorJira>')
 class ProjetoLocalizadorJiraController(Resource):
-
     @api.response(200, "Busca realizada com sucesso")
     def get(self, localizadorJira:str):
         return ProjetoDb.obterJira(str(localizadorJira)), 200
 
 
-@api.route('/<localizadorSgt>')
+@api.route('/Sgt/<localizadorSgt>')
 class ProjetoLocalizadorSgtController(Resource):
 
     @api.response(200, "Busca realizada com sucesso")
@@ -65,7 +68,7 @@ class ProjetoLocalizadorSgtController(Resource):
         return ProjetoDb.obterSgt(str(localizadorSgt)), 200
 
 
-@api.route('/<localizadorFgt>')
+@api.route('/Fgt/<localizadorFgt>')
 class ProjetoLocalizadorFgtController(Resource):
 
     @api.response(200, "Busca realizada com sucesso")

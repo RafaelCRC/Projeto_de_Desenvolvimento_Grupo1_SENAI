@@ -15,7 +15,15 @@ modelo = api.model('ContaModel', {
 class ContaController(Resource):
     @api.response(200, "Found with success")
     def get(self):
-        return ContaDB.obter(), 200
+        pagina = None
+        quantidade = None
+        if request.method == 'GET':
+            if 'pagina' in request.args:
+                pagina = request.args['pagina']
+            if 'quantidade' in request.args:
+                quantidade = request.args['quantidade']
+        return ContaDB.obter(pagina, quantidade), 200
+
     @api.expect(modelo)
     def post(self):
         return ContaDB.adicionar(request.json), 201

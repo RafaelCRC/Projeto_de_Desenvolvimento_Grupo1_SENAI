@@ -30,10 +30,20 @@ class ContaDB:
         return True
 
     @classmethod
-    def obter(cls, id=None):
+    def obter(cls, id=None, pagina=None, quantidade=None):
+        list = []
+        if not pagina:
+            pagina = 1
         if id:
-            return next(filter(lambda x: x['id'] is id, cls.items), {})
-        return cls.items
+            return next(filter(lambda x: x['id'] == id, cls.items), {})
+        else:
+            for i in cls.items:
+                list = cls.items
+        if quantidade:
+            inicio = (int(pagina) - 1) * int(quantidade)
+            fim = int(quantidade) + inicio
+            list = list[inicio: fim]
+        return list
 
     @classmethod
     def remover(cls, id):

@@ -15,7 +15,17 @@ modelo = api.model('VagasModel', {
 class VagasController(Resource):
     @api.response(200, "Found with success")
     def get(self):
-        return VagasDB.obter(), 200
+        pagina = None
+        quantidade = None
+        if request.method == 'GET':
+            if 'pagina' in request.args:
+                pagina = request.args['pagina']
+            if 'quantidade' in request.args:
+                quantidade = request.args['quantidade']
+
+        return VagasDB.obter(pagina, quantidade), 200
+
+
     @api.expect(modelo)
     def post(self):
         return VagasDB.adicionar(request.json), 201
@@ -29,3 +39,17 @@ class VagasIdController(Resource):
 
     def delete(self, id:str):
         return VagasDB.remover(str(id)), 200
+
+@api.route('/FindByStatus/<status>')
+class ProjetoNomeController(Resource):
+    @api.response(200, "Busca realizada com sucesso")
+    def get(self, status:str):
+        pagina = None
+        quantidade = None
+        if request.method == 'GET':
+            if 'pagina' in request.args:
+                pagina = request.args['pagina']
+            if 'quantidade' in request.args:
+                quantidade = request.args['quantidade']
+
+        return VagasDB.obterProjetoPorStatus(str(status), pagina, quantidade), 200

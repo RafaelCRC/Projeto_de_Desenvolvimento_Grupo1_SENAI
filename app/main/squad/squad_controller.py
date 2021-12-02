@@ -12,9 +12,19 @@ modelo = api.model('SquadModel', {
 
 @api.route('/')
 class SquadController(Resource):
+
     @api.response(200, "Found with success")
     def get(self):
-        return SquadDb.obter(), 200
+        pagina = None
+        quantidade = None
+        if request.method == 'GET':
+            if 'pagina' in request.args:
+                pagina = request.args['pagina']
+            if 'quantidade' in request.args:
+                quantidade = request.args['quantidade']
+
+        return SquadDb.obter(pagina, quantidade), 200
+
     @api.expect(modelo)
     def post(self):
         return SquadDb.adicionar(request.json), 201
@@ -28,3 +38,10 @@ class SquadIdController(Resource):
 
     def delete(self, id:str):
         return SquadDb.remover(str(id)), 200
+
+
+@api.route('/FindByName/<nome>')
+class ProjetoNomeController(Resource):
+    @api.response(200, "Busca realizada com sucesso")
+    def get(self, nome:str):
+        return SquadDb.obterProjetoPorNome(str(nome)), 200

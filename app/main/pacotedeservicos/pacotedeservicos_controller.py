@@ -17,7 +17,16 @@ modelo = api.model('PacoteModel', {
 class PacoteController(Resource):
     @api.response(200, "Found with success")
     def get(self):
-        return PacoteDeServicosDb.obter(), 200
+        pagina = None
+        quantidade = None
+        if request.method == 'GET':
+            if 'pagina' in request.args:
+                pagina = request.args['pagina']
+            if 'quantidade' in request.args:
+                quantidade = request.args['quantidade']
+
+        return PacoteDeServicosDb.obter(pagina, quantidade), 200
+
     @api.expect(modelo)
     def post(self):
         return PacoteDeServicosDb.adicionar(request.json), 201
