@@ -72,6 +72,12 @@ class ProjetoDb:
         return cls.items
 
     @classmethod
+    def obterProjetoPorNome(cls, nome):
+        if nome:
+            return next(filter(lambda x: x['nome'] == nome, cls.items), {})
+        return cls.items
+
+    @classmethod
     def remover(cls, id):
         cls.items = list(filter(lambda x: x['id'] != id, cls.items))
         return {"mensagem": f"id {id} deletado com sucesso"}

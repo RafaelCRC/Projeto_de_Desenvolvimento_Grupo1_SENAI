@@ -39,3 +39,11 @@ class ProjetoIdController(Resource):
     @api.response(200, "Elemento deletado com sucesso")
     def delete(self, id: str):
         return ProjetoDb.remover(str(id)), 200
+
+
+@api.route('/<nome>')
+class ProjetoNomeController(Resource):
+
+    @api.response(200, "Busca realizada com sucesso")
+    def get(self, nome:str):
+        return ProjetoDb.obterProjetoPorNome(str(nome)), 200
