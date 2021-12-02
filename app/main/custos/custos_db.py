@@ -41,20 +41,32 @@ class CustosDb:
         return True
 
     @classmethod
-    def obter(cls, id=None):
+    def obter(cls, id=None, descricao=None, qtdItens=None, pagina=None):
+        listResult = []
+        if not pagina:
+            pagina = 1
         if id:
-            return next(filter(lambda x: x['id'] == id, cls.items), {})
-        return cls.items
+            listResult.append(next(filter(lambda x: x['id'] == id, cls.items), {}))
+        else:
+            if descricao:
+                for x in cls.items:
+                    if descricao in x['descricao']:
+                        listResult.append(x)
+                '''next(filter(lambda x: descricao in x['descricao'], cls.items), {})'''
+            else:
+                listResult = cls.items
+        print(listResult)
+        if qtdItens:
+            inicio = (int(pagina) - 1) * int(qtdItens)
+            fim = int(qtdItens) + inicio
+            listResult = listResult[inicio: fim]
+        print(listResult)
+        return listResult
 
     @classmethod
     def buscarData(cls, inicio, fim):
         if inicio or fim:
             return "custos no periodo entre as datas"
-
-    @classmethod
-    def querySearch(cls, query):
-        if query:
-            return "busca da query"
 
     @classmethod
     def projectCost(cls, id):

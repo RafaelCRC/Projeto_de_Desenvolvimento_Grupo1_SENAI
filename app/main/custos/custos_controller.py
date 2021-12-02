@@ -14,35 +14,40 @@ modelo = api.model('CustosModel', {
     'deletedDate': fields.String
 })
 @api.route('/')
-class PessoaController(Resource):
+class CustosController(Resource):
     @api.response(200, "Found with success")
     def get(self):
-        return CustosDb.obter(), 200
+        descricao = None
+        qtdItens = None
+        pagina = None
+        if request.method == 'GET':
+            if 'descricao' in request.args:
+                descricao = request.args['descricao']
+            if 'qtdItens' in request.args:
+                qtdItens = request.args['qtdItens']
+            if 'pagina' in request.args:
+                pagina = request.args['pagina']
+        '''if descricao is not None and descricao != '':'''
+        return CustosDb.obter(None, descricao, qtdItens, pagina), 200
+
     @api.expect(modelo)
     def post(self):
         return CustosDb.adicionar(request.json), 201
 
-
-@api.route('/query/<query>')
-class PessoaIdController(Resource):
-    @api.response(200, "Busca realizada com sucesso")
-    def get(self, query:str):
-        return CustosDb.querySearch(str(query)), 200
-
 @api.route('/projeto/<id>')
-class PessoaIdController(Resource):
+class CustosIdController(Resource):
     @api.response(200, "Busca realizada com sucesso")
     def get(self, id: int):
         return CustosDb.projectCost(int(id)), 200
 
 @api.route('/cargo/<id>')
-class PessoaIdController(Resource):
+class CustosIdController(Resource):
     @api.response(200, "Busca realizada com sucesso")
     def get(self, id: int):
         return CustosDb.cargoCost(int(id)), 200
 
 @api.route('/<id>')
-class PessoaIdController(Resource):
+class CustosIdController(Resource):
     @api.response(200, "Busca realizada com sucesso")
     def get(self, id:int):
         return CustosDb.obter(int(id)), 200
@@ -62,7 +67,7 @@ class PessoaIdController(Resource):
         return CustosDb.remover(int(id)), 200
 
 @api.route('/<dataInicio>/<dataFim>')
-class CustoDataController(Resource):
+class CustosDataController(Resource):
     @api.response(200, "Busca realizada com sucesso")
     def get(self, dataInicio:str, dataFim:str):
         return CustosDb.buscarData(str(dataInicio), str(dataFim)), 200
