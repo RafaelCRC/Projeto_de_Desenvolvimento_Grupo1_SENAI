@@ -5,9 +5,9 @@ class ProjetoDb:
             'nome': 'Projeto 1',
             'descricao': 'Esse é o projeto 1',
             'contatoCliente': 'aaaaa@qwe.com',
-            'lozalizadorJira': 'qweqd',
-            'lozalizadorSgt': 'qwasf',
-            'lozalizadorFgt': 'gfvd',
+            'localizadorJira': 'qweqd',
+            'localizadorSgt': 'qwasf',
+            'localizadorFgt': 'gfvd',
             'inicioPlanejado': '15/07/2000',
             'fimPlanejado': '15/07/2001',
             'InicioReal': '01/08/2000',
@@ -18,9 +18,9 @@ class ProjetoDb:
             'nome': 'Projeto 2',
             'descricao': 'Esse é o projeto 2',
             'contatoCliente': '81 921313142',
-            'lozalizadorJira': 'uhqgw',
-            'lozalizadorSgt': 'efsqw',
-            'lozalizadorFgt': 'wrfsa',
+            'localizadorJira': 'uhqgw',
+            'localizadorSgt': 'efsqw',
+            'localizadorFgt': 'wrfsa',
             'inicioPlanejado': '07/10/2007',
             'fimPlanejado': '07/08/2008',
             'InicioReal': '01/12/2007',
@@ -31,9 +31,9 @@ class ProjetoDb:
             'nome': 'Projeto 3',
             'descricao': 'Esse é o projeto 3',
             'contatoCliente': 'jrqwsa@refs.com',
-            'lozalizadorJira': 'hgutn',
-            'lozalizadorSgt': 'ituhn',
-            'lozalizadorFgt': 'urifn',
+            'localizadorJira': 'hgutn',
+            'localizadorSgt': 'ituhn',
+            'localizadorFgt': 'urifn',
             'inicioPlanejado': '17/01/2015',
             'fimPlanejado': '17/01/2016',
             'InicioReal': '17/07/2016',
@@ -48,21 +48,21 @@ class ProjetoDb:
         return True
 
     @classmethod
-    def obterJira(cls, localizador=None):
-        if localizador:
-            return next(filter(lambda x: x['lozalizadorJira'] == localizador, cls.items), {})
+    def obterJira(cls, localizadorJira=None):
+        if localizadorJira:
+            return next(filter(lambda x: x['localizadorJira'] == localizadorJira, cls.items), {})
         return cls.items
 
     @classmethod
-    def obterSgt(cls, id=None):
-        if id:
-            return next(filter(lambda x: x['lozalizadorSgt'] == id, cls.items), {})
+    def obterSgt(cls, localizadorSgt=None):
+        if localizadorSgt:
+            return next(filter(lambda x: x['localizadorSgt'] == localizadorSgt, cls.items), {})
         return cls.items
 
     @classmethod
-    def obterFgt(cls, id=None):
-        if id:
-            return next(filter(lambda x: x['lozalizadorFgt'] == id, cls.items), {})
+    def obterFgt(cls, localizadorFgt=None):
+        if localizadorFgt:
+            return next(filter(lambda x: x['localizadorFgt'] == localizadorFgt, cls.items), {})
         return cls.items
 
     @classmethod

@@ -8,9 +8,9 @@ modelo = api.model('ProjetoModel', {
     'nome': fields.String,
     'descricao': fields.String,
     'ContatoCliente': fields.String,
-    'lozalizadorJira': fields.String,
-    'lozalizadorSgt': fields.String,
-    'lozalizadorFgt': fields.String,
+    'localizadorJira': fields.String,
+    'localizadorSgt': fields.String,
+    'localizadorFgt': fields.String,
     'inicioPlanejado': fields.String,
     'fimPlanejado': fields.String,
     'InicioReal': fields.String,
@@ -47,3 +47,27 @@ class ProjetoNomeController(Resource):
     @api.response(200, "Busca realizada com sucesso")
     def get(self, nome:str):
         return ProjetoDb.obterProjetoPorNome(str(nome)), 200
+
+
+@api.route('/<localizadorJira>')
+class ProjetoLocalizadorJiraController(Resource):
+
+    @api.response(200, "Busca realizada com sucesso")
+    def get(self, localizadorJira:str):
+        return ProjetoDb.obterJira(str(localizadorJira)), 200
+
+
+@api.route('/<localizadorSgt>')
+class ProjetoLocalizadorSgtController(Resource):
+
+    @api.response(200, "Busca realizada com sucesso")
+    def get(self, localizadorSgt:str):
+        return ProjetoDb.obterSgt(str(localizadorSgt)), 200
+
+
+@api.route('/<localizadorFgt>')
+class ProjetoLocalizadorFgtController(Resource):
+
+    @api.response(200, "Busca realizada com sucesso")
+    def get(self, localizadorFgt:str):
+        return ProjetoDb.obterFgt(str(localizadorFgt)), 200
