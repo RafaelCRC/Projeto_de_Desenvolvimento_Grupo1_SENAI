@@ -46,7 +46,7 @@ class CustosDb:
         if not pagina:
             pagina = 1
         if id:
-            listResult.append(next(filter(lambda x: x['id'] == id, cls.items), {}))
+            return listResult.append(next(filter(lambda x: x['id'] == id, cls.items), {}))
         else:
             if descricao:
                 for x in cls.items:
