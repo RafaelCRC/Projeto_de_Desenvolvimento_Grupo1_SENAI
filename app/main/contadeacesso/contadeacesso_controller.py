@@ -37,3 +37,15 @@ class ContaIdController(Resource):
 
     def delete(self, id:str):
         return ContaDB.remover(str(id)), 200
+
+@api.route('/FindByConta/<nome>')
+class ContaNomeController(Resource):
+    @api.response(200, "Busca realizada com sucesso")
+    def get(self, nome:str):
+        return ContaDB.obterContaPorNome(str(nome)), 200
+
+@api.route('/FindByEmail/<email>')
+class ContaEmailController(Resource):
+    @api.response(200, "Busca realizada com sucesso")
+    def get(self, email:str):
+        return ContaDB.obterContaPorEmail(str(email)), 200

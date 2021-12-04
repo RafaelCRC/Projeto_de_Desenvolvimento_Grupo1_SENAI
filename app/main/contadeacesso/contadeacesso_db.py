@@ -2,7 +2,7 @@ class ContaDB:
     items = [
         {
             'id': '1',
-            'nome': 'Nome 1 ',
+            'nome': 'Nome 1',
             'email': 'mail@mail.com',
             'senha': 'senha1',
             'idColaborador': '12',
@@ -49,3 +49,15 @@ class ContaDB:
     def remover(cls, id):
         cls.items = list(filter(lambda x: x['id'] != id, cls.items))
         return {"mensagem": f"id {id} deletado com sucesso"}
+
+    @classmethod
+    def obterContaPorNome(cls, nome):
+        if nome:
+            return next(filter(lambda x: x['nome'] == nome, cls.items), {})
+        return cls.items
+
+    @classmethod
+    def obterContaPorEmail(cls, email):
+        if email:
+            return next(filter(lambda x: x['email'] == email, cls.items), {})
+        return cls.items
