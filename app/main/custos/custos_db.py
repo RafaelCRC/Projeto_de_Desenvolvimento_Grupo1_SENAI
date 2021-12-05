@@ -1,4 +1,7 @@
 from datetime import datetime
+from collections import namedtuple
+
+Range = namedtuple('Range', ['start', 'end'])
 
 
 class CustosDb:
@@ -38,7 +41,7 @@ class CustosDb:
     @classmethod
     def adicionar(cls, item):
         cls.items.append(item)
-        return True
+        return item
 
     @classmethod
     def obter(cls, id=None, descricao=None, qtdItens=None, pagina=None):
@@ -55,18 +58,43 @@ class CustosDb:
                 '''next(filter(lambda x: descricao in x['descricao'], cls.items), {})'''
             else:
                 listResult = cls.items
-        print(listResult)
         if qtdItens:
             inicio = (int(pagina) - 1) * int(qtdItens)
             fim = int(qtdItens) + inicio
             listResult = listResult[inicio: fim]
-        print(listResult)
         return listResult
 
     @classmethod
-    def buscarData(cls, inicio, fim):
-        if inicio or fim:
-            return "custos no periodo entre as datas"
+    def buscarData(cls, inicio, fim, qtdItens=None, pagina=None):
+        if inicio and fim:
+            listResult = []
+            startDate = inicio.split("-")
+            startDate = [int(convertString) for convertString in startDate]
+            endDate = fim.split("-")
+            endDate = [int(convertString) for convertString in endDate]
+            for x in cls.items:
+                itemStartDate = x['dataInicio'].split("-")
+                itemStartDate = [int(convertString) for convertString in itemStartDate]
+                itemEndDate = x['dataFim'].split("-")
+                itemEndDate = [int(convertString) for convertString in itemEndDate]
+                r1 = (Range(start=datetime(startDate[0], startDate[1], startDate[2]),
+                            end=datetime(endDate[0], endDate[1], endDate[2])))
+                r2 = (Range(start=datetime(itemStartDate[0], itemStartDate[1], itemStartDate[2]),
+                            end=datetime(itemEndDate[0], itemEndDate[1], itemEndDate[2])))
+                latest_start = max(r1.start, r2.start)
+                earliest_end = min(r1.end, r2.end)
+                delta = (earliest_end - latest_start).days + 1
+                overlap = max(0, delta)
+                print(overlap)
+                if overlap:
+                    listResult.append(x)
+            if qtdItens:
+                if not pagina:
+                    pagina = 1
+                inicio = (int(pagina) - 1) * int(qtdItens)
+                fim = int(qtdItens) + inicio
+                listResult = listResult[inicio: fim]
+            return listResult
 
     @classmethod
     def projectCost(cls, id):
@@ -84,7 +112,7 @@ class CustosDb:
         return {"mensagem": f"id {id} deletado com sucesso"}
 
     @classmethod
-    def alterar(cls, id, novo_item:dict):
+    def alterar(cls, id, novo_item: dict):
         item = next(filter(lambda x: x['id'] == id, cls.items), {})
         index = cls.items.index(item)
 
@@ -99,9 +127,6 @@ class CustosDb:
 
         if novo_item.get('periodo'):
             item['periodo'] = novo_item.get('periodo')
-
-        if novo_item.get('lozalizadorSgt'):
-            item['lozalizadorSgt'] = novo_item.get('lozalizadorSgt')
 
         if novo_item.get('descricao'):
             item['descricao'] = novo_item.get('descricao')

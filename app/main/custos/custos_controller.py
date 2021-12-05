@@ -13,6 +13,7 @@ modelo = api.model('CustosModel', {
     'deletedBy': fields.String,
     'deletedDate': fields.String
 })
+
 @api.route('/')
 class CustosController(Resource):
     @api.response(200, "Found with success")
@@ -39,6 +40,19 @@ class CustosIdController(Resource):
     @api.response(200, "Busca realizada com sucesso")
     def get(self, id: int):
         return CustosDb.projectCost(int(id)), 200
+
+@api.route('/<inicio>/<fim>')
+class CustosIdController(Resource):
+    @api.response(200, "Busca realizada com sucesso")
+    def get(self, inicio, fim):
+        qtdItens = None
+        pagina = None
+        if request.method == 'GET':
+            if 'qtdItens' in request.args:
+                qtdItens = request.args['qtdItens']
+            if 'pagina' in request.args:
+                pagina = request.args['pagina']
+        return CustosDb.buscarData(inicio, fim, qtdItens, pagina), 200
 
 @api.route('/cargo/<id>')
 class CustosIdController(Resource):
