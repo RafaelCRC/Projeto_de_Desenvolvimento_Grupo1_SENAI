@@ -1,6 +1,8 @@
+
 from flask_restplus import Resource, Namespace, fields
 from flask import request
 from app.main.cargos.cargos_db import CargosDb
+from app.main.squad.squad_db import SquadDb
 
 api = Namespace('Cargos', description="Gerenciamento de Cargos")
 modelo = api.model('CargosModel', {
@@ -29,11 +31,25 @@ class PessoaController(Resource):
         return CargosDb.querySearch(str(query)), 200
 
 
+@api.route('/<nome>')
+class PessoaIdController(Resource):
+    @api.response(200, "Busca realizada com sucesso")
+    def get(self, nome: str):
+        return CargosDb.obter(nome=nome), 200
+
+
+@api.route('/squad/<id>')
+class PessoaIdController(Resource):
+    @api.response(200, "Busca realizada com sucesso")
+    def get(self, squad: int):
+        return SquadDb.obter(str(squad)), 200
+
+
 @api.route('/<id>')
 class PessoaIdController(Resource):
     @api.response(200, "Busca realizada com sucesso")
-    def get(self, id:int):
-        return CargosDb.obter(str(id)), 200
+    def get(self, id: int):
+        return CargosDb.obter(str(id=id)), 200
 
 
 @api.route('/<id>')
@@ -44,10 +60,12 @@ class PessoaIdController(Resource):
     def put(self, id: str):
         return CargosDb.adicionar(str(id), request.json), 201
 
+
 @api.route('/<id>')
 class PessoaIdController(Resource):
     def delete(self, id: str):
         return CargosDb.remover(int(id)), 200
+
 
 """
 @api.route('/skill/<id>')

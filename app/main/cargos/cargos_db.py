@@ -26,9 +26,11 @@ class CargosDb:
         return True
 
     @classmethod
-    def obter(cls, id=None):
+    def obter(cls, id=None, nome=None):
         if id:
             return next(filter(lambda x: x['id'] == id, cls.items), {})
+        if nome:
+            return next(filter(lambda x: x['nome'] == nome, cls.items), {})
         return cls.items
 
     @classmethod
