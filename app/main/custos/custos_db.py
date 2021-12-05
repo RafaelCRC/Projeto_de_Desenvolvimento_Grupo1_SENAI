@@ -7,7 +7,7 @@ Range = namedtuple('Range', ['start', 'end'])
 class CustosDb:
     items = [
         {
-            'id': "1",
+            'id': '1',
             'valor': 54.20,
             'dataInicio': "1999-05-20",
             'dataFim': "1999-07-21",
@@ -17,7 +17,7 @@ class CustosDb:
             'deletedDate': ""
         },
         {
-            'id': "2",
+            'id': '2',
             'valor': 175.00,
             'dataInicio': "2003-08-10",
             'dataFim': "2005-07-15",
@@ -27,7 +27,7 @@ class CustosDb:
             'deletedDate': ""
         },
         {
-            'id': "3",
+            'id': '3',
             'valor': 700.50,
             'dataInicio': "2010-08-05",
             'dataFim': "2015-10-23",
@@ -49,7 +49,7 @@ class CustosDb:
         if not pagina:
             pagina = 1
         if id:
-            return listResult.append(next(filter(lambda x: x['id'] == id, cls.items), {}))
+            return next(filter(lambda y: y['id'] == id, cls.items), {})
         else:
             if descricao:
                 for x in cls.items:
@@ -110,6 +110,16 @@ class CustosDb:
     def remover(cls, id):
         cls.items = list(filter(lambda x: x['id'] != id, cls.items))
         return {"mensagem": f"id {id} deletado com sucesso"}
+
+    @classmethod
+    def markAsRemoved(cls, id, user=""):
+        item = next(filter(lambda x: x['id'] == id, cls.items), {})
+        index = cls.items.index(item)
+        if item:
+            item['deletedDate'] = str(datetime.today())
+            item['deletedBy'] = user
+        cls.items[index] = item
+        return item
 
     @classmethod
     def alterar(cls, id, novo_item: dict):
