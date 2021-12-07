@@ -31,7 +31,7 @@ class SkillsController(Resource):
         return SkillsDb.adicionar(request.json),201
 
 @api.route('/query/<query>')
-class SkillsController(Resource):
+class SkillsQueryController(Resource):
     @api.response(200, "Busca realizada com sucesso")
     def get(self, query:str):
         return SkillsDb.querySearch(str(query)), 200
@@ -46,16 +46,16 @@ class SkillsIdController(Resource):
 class ColaboradorSkillsIdController(Resource):
     @api.response(200, "Busca realizada com sucesso")
     def get(self, id):
-        return SkillsDb.colaboradorSkill(id), 200
+        return SkillsDb.colaboradorSkill(str(id)), 200
 
 @api.route('/<id>')
-class SkillsIdController(Resource):
+class SkillsIdPutController(Resource):
     @api.param('id', 'Código da Skill')
     @api.param('descricao', 'Descrição da Skill')
     def put(self, id:str):
         return SkillsDb.adicionar(str(id),request.json), 201
 
 @api.route('/<id>')
-class SkillsIdController(Resource):
+class SkillsIdRemoveController(Resource):
     def delete(self, id: str):
         return SkillsDb.remover(str(id)), 200

@@ -14,57 +14,55 @@ modelo = api.model('CargosModel', {
 
 
 @api.route('/')
-class PessoaController(Resource):
+class CargosController(Resource):
     @api.response(200, "Found with success")
     def get(self):
-        return CargosDb.obter(), 200
+        descricao = None
+        qtdItens = None
+        pagina = None
+        if request.method == 'GET':
+            if 'descricao' in request.args:
+                descricao = request.args['descricao']
+            if qtdItens in request.args:
+                qtdItens = request.args['qtdItens']
+            if pagina in request.args:
+                pagina = request.args['pagina']
+        return CargosDb.obter(None, descricao, qtdItens, pagina), 200
 
     @api.expect(modelo)
     def post(self):
         return CargosDb.adicionar(request.json), 201
 
 
-@api.route('/query/<query>')
-class PessoaController(Resource):
-    @api.response(200, "Busca realizada com sucesso")
-    def get(self, query:str):
-        return CargosDb.querySearch(str(query)), 200
-
-
 @api.route('/<nome>')
-class PessoaIdController(Resource):
+class CargosIdController(Resource):
     @api.response(200, "Busca realizada com sucesso")
     def get(self, nome: str):
         return CargosDb.obter(nome=nome), 200
 
 
 @api.route('/squad/<id>')
-class PessoaIdController(Resource):
-    @api.response(200, "Busca realizada com sucesso")
-    def get(self, squad: int):
-        return SquadDb.obter(str(squad)), 200
-
-
-@api.route('/<id>')
-class PessoaIdController(Resource):
+class CargosAndSquadIdController(Resource):
     @api.response(200, "Busca realizada com sucesso")
     def get(self, id: int):
-        return CargosDb.obter(str(id=id)), 200
+        return SquadDb.obter(str(id)), 200
 
 
 @api.route('/<id>')
-class PessoaIdController(Resource):
+class CargosIdController(Resource):
     @api.param('id', 'Códgio identificador')
     @api.param('nome', 'Título do cargo')
     @api.param('funcao', "Trabalho a ser executado pelo cargo")
     def put(self, id: str):
-        return CargosDb.adicionar(str(id), request.json), 201
-
+        return CargosDb.adicionar(str(id), request.json), 200
 
 @api.route('/<id>')
-class PessoaIdController(Resource):
+class CargosRemovalIdController(Resource):
     def delete(self, id: str):
         return CargosDb.remover(int(id)), 200
+
+    def get(self, id: int):
+        return CargosDb.obter(str(id=id)), 200
 
 
 """

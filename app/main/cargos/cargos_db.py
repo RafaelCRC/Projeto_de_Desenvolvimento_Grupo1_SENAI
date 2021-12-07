@@ -26,12 +26,26 @@ class CargosDb:
         return True
 
     @classmethod
-    def obter(cls, id=None, nome=None):
+    def obter(cls, id=None, nome=None, descricao=None, qtdItens=None, pagina=None):
+        list_result = []
+        if not pagina:
+            pagina = 1
         if id:
             return next(filter(lambda x: x['id'] == id, cls.items), {})
         if nome:
             return next(filter(lambda x: x['nome'] == nome, cls.items), {})
-        return cls.items
+        else:
+            if descricao:
+                for x in cls.items:
+                    if descricao in x['descricao']:
+                        list_result.append(x)
+            else:
+                list_result = cls.items
+        if qtdItens:
+            inicio = (int(pagina) - 1) * int(qtdItens)
+            fim = int(qtdItens) + inicio
+            list_result = list_result[inicio: fim]
+        return list_result
 
     @classmethod
     def remover(cls, id):
