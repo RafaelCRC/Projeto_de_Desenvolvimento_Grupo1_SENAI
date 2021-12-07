@@ -42,7 +42,7 @@ class PessoaIdController(Resource):
 
 @api.route('/<id>')
 class PessoaIdController(Resource):
-    @api.param('id', 'Códgio identificador')
+    @api.param('id', 'Código identificador')
     @api.param('nome', 'Nome do colaborador')
     @api.param('cpf', "CPF do colaborador")
     def put(self, id: str):
