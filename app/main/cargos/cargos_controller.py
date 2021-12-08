@@ -16,6 +16,8 @@ modelo = api.model('CargosModel', {
 @api.route('/')
 class CargosController(Resource):
     @api.response(200, "Found with success")
+    @api.param("qtdItens", "Quantidade de itens por página")
+    @api.param("pagina", "Número da página")
     def get(self):
         descricao = None
         qtdItens = None
@@ -23,9 +25,9 @@ class CargosController(Resource):
         if request.method == 'GET':
             if 'descricao' in request.args:
                 descricao = request.args['descricao']
-            if qtdItens in request.args:
+            if 'qtdItens' in request.args:
                 qtdItens = request.args['qtdItens']
-            if pagina in request.args:
+            if 'pagina' in request.args:
                 pagina = request.args['pagina']
         return CargosDb.obter(None, descricao, qtdItens, pagina), 200
 
