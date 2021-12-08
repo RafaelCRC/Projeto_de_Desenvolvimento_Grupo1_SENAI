@@ -74,4 +74,4 @@ class ContaDB:
     def deletarContaPorEmail(cls, email):
         if email:
             cls.items = list(filter(lambda x: x['email'] != email, cls.items))
-            return {"mensagem": f"id {id} deletado com sucesso"}
+            return {"mensagem": f"email {email} deletado com sucesso"}
