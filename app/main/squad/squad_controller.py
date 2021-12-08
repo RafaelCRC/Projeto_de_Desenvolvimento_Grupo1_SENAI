@@ -35,9 +35,14 @@ class SquadIdController(Resource):
     @api.response(200, "Busca realizada com sucesso")
     def get(self, id:str):
         return SquadDb.obter(str(id)), 200
-
+    
     def delete(self, id:str):
         return SquadDb.remover(str(id)), 200
+
+    @api.response(200, "Atualizado com sucesso")
+    @api.expect(modelo)
+    def put(self, id):
+        return SquadDb.alterar(id, request.json), 201
 
 
 @api.route('/FindByName/<nome>')
