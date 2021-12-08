@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e954c361-1172-45c7-b25f-8f312d3ab4ff" name="Changes" comment="Mudanças locais ricardo">
-      <change afterPath="$PROJECT_DIR$/app/main/skills/skills_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/main/skills/skills_db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main/colaborador/colaborador_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/colaborador/colaborador_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main/pacotedeservicos/pacotedeservicos_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/pacotedeservicos/pacotedeservicos_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main/pacotedeservicos/pacotedeservicos_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/pacotedeservicos/pacotedeservicos_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main/projeto/projeto_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/projeto/projeto_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main/projeto/projeto_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/projeto/projeto_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main/vagas/vagas_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/vagas/vagas_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main/vagas/vagas_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/vagas/vagas_db.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +40,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../python-flask-server" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -104,6 +105,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Mudanças locais ricardo" />

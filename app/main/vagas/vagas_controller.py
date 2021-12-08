@@ -50,7 +50,7 @@ class VagasColaboradorIdController(Resource):
     @api.response(200, "Elemento atualizado com sucesso")
     @api.expect(modelo)
     def put(self, idColaborador: str):
-        return VagasDB.alterarPorColaborador(str(id), request.json), 200
+        return VagasDB.alterarPorColaborador(str(idColaborador), request.json), 200
 
 @api.route('/FindByStatus/<status>')
 class ProjetoNomeController(Resource):

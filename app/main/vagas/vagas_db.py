@@ -78,7 +78,7 @@ class VagasDB:
             item['descricao'] = novo_item.get('descricao')
 
         if novo_item.get('idCusto'):
-            item['idCusto'] = novo_item.get('v')
+            item['idCusto'] = novo_item.get('idCusto')
 
         if novo_item.get('idColaborador'):
             item['idColaborador'] = novo_item.get('idColaborador')
@@ -87,8 +87,8 @@ class VagasDB:
         return item
 
     @classmethod
-    def alterarPorColaborador(cls, id, novo_item: dict):
-        item = next(filter(lambda x: x['idColaborador'] == id, cls.items), {})
+    def alterarPorColaborador(cls, idColaborador, novo_item: dict):
+        item = next(filter(lambda x: x['idColaborador'] == idColaborador, cls.items), {})
         index = cls.items.index(item)
 
         if novo_item.get('status'):
@@ -98,7 +98,10 @@ class VagasDB:
             item['descricao'] = novo_item.get('descricao')
 
         if novo_item.get('idCusto'):
-            item['idCusto'] = novo_item.get('v')
+            item['idCusto'] = novo_item.get('idCusto')
+
+        if novo_item.get('idColaborador'):
+            item['idColaborador'] = novo_item.get('idColaborador')
 
         cls.items[index] = item
         return item

@@ -7,7 +7,7 @@ modelo = api.model('ProjetoModel', {
     'id': fields.String,
     'nome': fields.String,
     'descricao': fields.String,
-    'ContatoCliente': fields.String,
+    'contatoCliente': fields.String,
     'localizadorJira': fields.String,
     'localizadorSgt': fields.String,
     'localizadorFgt': fields.String,
@@ -46,7 +46,7 @@ class ProjetoIdController(Resource):
     @api.response(200, "Elemento atualizado com sucesso")
     @api.expect(modelo)
     def put(self, id: str):
-        return ProjetoDb.alterar(str(id), request.json), 200
+        return ProjetoDb.atualizar(str(id), request.json), 200
 
     @api.response(200, "Elemento deletado com sucesso")
     def delete(self, id:str):

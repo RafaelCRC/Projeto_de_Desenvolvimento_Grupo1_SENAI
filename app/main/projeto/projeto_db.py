@@ -93,8 +93,8 @@ class ProjetoDb:
         return {"mensagem": f"id {id} deletado com sucesso"}
 
     @classmethod
-    def alterar(cls, id, novo_item:dict):
-        item = next(filter(lambda x: x['id'] == id,cls.items),{})
+    def atualizar(cls, id, novo_item:dict):
+        item = next(filter(lambda x: x['id'] == id, cls.items), {})
         index = cls.items.index(item)
 
         if novo_item.get('nome'):
@@ -106,14 +106,14 @@ class ProjetoDb:
         if novo_item.get('contatoCliente'):
             item['contatoCliente'] = novo_item.get('contatoCliente')
 
-        if novo_item.get('lozalizadorGira'):
-            item['lozalizadorGira'] = novo_item.get('lozalizadorGira')
+        if novo_item.get('localizadorJira'):
+            item['localizadorJira'] = novo_item.get('localizadorJira')
 
-        if novo_item.get('lozalizadorSgt'):
-            item['lozalizadorSgt'] = novo_item.get('lozalizadorSgt')
+        if novo_item.get('localizadorSgt'):
+            item['localizadorSgt'] = novo_item.get('localizadorSgt')
 
-        if novo_item.get('lozalizadorFgt'):
-            item['lozalizadorFgt'] = novo_item.get('lozalizadorFgt')
+        if novo_item.get('localizadorFgt'):
+            item['localizadorFgt'] = novo_item.get('localizadorFgt')
 
         if novo_item.get('inicioPlanejado'):
             item['inicioPlanejado'] = novo_item.get('inicioPlanejado')
