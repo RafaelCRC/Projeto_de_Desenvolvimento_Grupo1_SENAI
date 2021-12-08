@@ -21,6 +21,14 @@ class ContaDB:
             'senha': 'senha3',
             'idColaborador': '123',
 
+        },
+        {
+            'id': '4',
+            'nome': 'Nome 3',
+            'email': 'teste@mail.com',
+            'senha': 'senha3',
+            'idColaborador': '123',
+
         }
     ]
 
@@ -61,3 +69,9 @@ class ContaDB:
         if email:
             return next(filter(lambda x: x['email'] == email, cls.items), {})
         return cls.items
+
+    @classmethod
+    def deletarContaPorEmail(cls, email):
+        if email:
+            cls.items = list(filter(lambda x: x['email'] != email, cls.items))
+            return {"mensagem": f"id {id} deletado com sucesso"}
