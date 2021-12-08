@@ -40,6 +40,18 @@ class VagasIdController(Resource):
     def delete(self, id:str):
         return VagasDB.remover(str(id)), 200
 
+    @api.response(200, "Elemento atualizado com sucesso")
+    @api.expect(modelo)
+    def put(self, id: str):
+        return VagasDB.alterar(str(id), request.json), 200
+
+@api.route('/<idColaborador>')
+class VagasColaboradorIdController(Resource):
+    @api.response(200, "Elemento atualizado com sucesso")
+    @api.expect(modelo)
+    def put(self, idColaborador: str):
+        return VagasDB.alterarPorColaborador(str(id), request.json), 200
+
 @api.route('/FindByStatus/<status>')
 class ProjetoNomeController(Resource):
     @api.response(200, "Busca realizada com sucesso")

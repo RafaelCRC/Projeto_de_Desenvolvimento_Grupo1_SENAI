@@ -21,6 +21,14 @@ class ContaDB:
             'senha': 'senha3',
             'idColaborador': '123',
 
+        },
+        {
+            'id': '4',
+            'nome': 'Nome 3',
+            'email': 'teste@mail.com',
+            'senha': 'senha3',
+            'idColaborador': '123',
+
         }
     ]
 
@@ -61,3 +69,29 @@ class ContaDB:
         if email:
             return next(filter(lambda x: x['email'] == email, cls.items), {})
         return cls.items
+
+    @classmethod
+    def deletarContaPorEmail(cls, email):
+        if email:
+            cls.items = list(filter(lambda x: x['email'] != email, cls.items))
+            return {"mensagem": f"id {id} deletado com sucesso"}
+
+    @classmethod
+    def atualizar(cls, id, novo_item: dict):
+        item = next(filter(lambda x: x['id'] == id, cls.items), {})
+        index = cls.items.index(item)
+
+        if novo_item.get('nome'):
+            item['nome'] = novo_item.get('nome')
+
+        if novo_item.get('email'):
+            item['email'] = novo_item.get('email')
+
+        if novo_item.get('senha'):
+            item['senha'] = novo_item.get('senha')
+
+        if novo_item.get('idColaborador'):
+            item['idColaborador'] = novo_item.get('idColaborador')
+
+        cls.items[index] = item
+        return item

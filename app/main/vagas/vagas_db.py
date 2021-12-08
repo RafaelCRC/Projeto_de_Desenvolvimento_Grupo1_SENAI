@@ -66,4 +66,39 @@ class VagasDB:
             list = list[inicio: fim]
         return list
 
+    @classmethod
+    def alterar(cls, id, novo_item: dict):
+        item = next(filter(lambda x: x['id'] == id, cls.items), {})
+        index = cls.items.index(item)
 
+        if novo_item.get('status'):
+            item['status'] = novo_item.get('status')
+
+        if novo_item.get('descricao'):
+            item['descricao'] = novo_item.get('descricao')
+
+        if novo_item.get('idCusto'):
+            item['idCusto'] = novo_item.get('v')
+
+        if novo_item.get('idColaborador'):
+            item['idColaborador'] = novo_item.get('idColaborador')
+
+        cls.items[index] = item
+        return item
+
+    @classmethod
+    def alterarPorColaborador(cls, id, novo_item: dict):
+        item = next(filter(lambda x: x['idColaborador'] == id, cls.items), {})
+        index = cls.items.index(item)
+
+        if novo_item.get('status'):
+            item['status'] = novo_item.get('status')
+
+        if novo_item.get('descricao'):
+            item['descricao'] = novo_item.get('descricao')
+
+        if novo_item.get('idCusto'):
+            item['idCusto'] = novo_item.get('v')
+
+        cls.items[index] = item
+        return item

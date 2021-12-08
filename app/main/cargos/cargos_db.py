@@ -26,18 +26,20 @@ class CargosDb:
         return True
 
     @classmethod
-    def obter(cls, id=None, nome=None, descricao=None, qtdItens=None, pagina=None):
+    def obter(cls, id=None, nome=None, qtdItens=None, skill=None, pagina=None, titulo=False):
         list_result = []
+        if titulo:
+            for x in cls.items:
+                list_result.append(x['nome'])
+            return list_result
         if not pagina:
             pagina = 1
         if id:
-            return next(filter(lambda x: x['id'] == id, cls.items), {})
-        if nome:
-            return next(filter(lambda x: x['nome'] == nome, cls.items), {})
+            return next(filter(lambda y: y['id'] == id, cls.items), {})
         else:
-            if descricao:
+            if nome:
                 for x in cls.items:
-                    if descricao in x['descricao']:
+                    if nome in x['nome']:
                         list_result.append(x)
             else:
                 list_result = cls.items
@@ -51,6 +53,19 @@ class CargosDb:
     def remover(cls, id):
         cls.items = list(filter(lambda x: x['id'] != id, cls.items))
         return {"mensagem": f"id {id} deletado com sucesso"}
+
+    @classmethod
+    def alterar(cls, id, novo_item: dict):
+        item = next(filter(lambda x: x['id'] == id, cls.items), {})
+        index = cls.items.index(item)
+        if novo_item.get('nome'):
+            item['nome'] = novo_item.get('nome')
+        if novo_item.get('descricao'):
+            item['descricao'] = novo_item.get('descricao')
+        if novo_item.get('funcao'):
+            item['funcao'] = novo_item.get('funcao')
+        cls.items[index] = item
+        return item
 
     @classmethod
     def querySearch(cls, query):
