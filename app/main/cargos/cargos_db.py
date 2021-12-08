@@ -26,18 +26,16 @@ class CargosDb:
         return True
 
     @classmethod
-    def obter(cls, id=None, nome=None, descricao=None, qtdItens=None, pagina=None):
+    def obter(cls, id=None, nome=None, qtdItens=None, skill=None, pagina=None):
         list_result = []
         if not pagina:
             pagina = 1
         if id:
-            return next(filter(lambda x: x['id'] == id, cls.items), {})
-        if nome:
-            return next(filter(lambda x: x['nome'] == nome, cls.items), {})
+            return next(filter(lambda y: y['id'] == id, cls.items), {})
         else:
-            if descricao:
+            if nome:
                 for x in cls.items:
-                    if descricao in x['descricao']:
+                    if nome in x['nome']:
                         list_result.append(x)
             else:
                 list_result = cls.items

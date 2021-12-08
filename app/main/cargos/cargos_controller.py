@@ -34,8 +34,8 @@ class CargosController(Resource):
         return CargosDb.adicionar(request.json), 201
 
 
-@api.route('/<nome>')
-class CargosIdController(Resource):
+@api.route('/findByName/<nome>')
+class CargosNomeController(Resource):
     @api.response(200, "Busca realizada com sucesso")
     def get(self, nome: str):
         return CargosDb.obter(nome=nome), 200
@@ -58,11 +58,11 @@ class CargosIdController(Resource):
 
 @api.route('/<id>')
 class CargosRemovalIdController(Resource):
-    def delete(self, id: str):
-        return CargosDb.remover(int(id)), 200
+    def delete(self, id):
+        return CargosDb.remover(id), 200
 
-    def get(self, id: int):
-        return CargosDb.obter(str(id=id)), 200
+    def get(self, id: str):
+        return CargosDb.obter(id=id), 200
 
 
 """
