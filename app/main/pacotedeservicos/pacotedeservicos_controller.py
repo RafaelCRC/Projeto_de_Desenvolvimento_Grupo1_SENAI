@@ -38,10 +38,5 @@ class PacoteIdController(Resource):
     def get(self, id:str):
         return PacoteDeServicosDb.obter(str(id)), 200
 
-    @api.response(200, "Elemento atualizado com sucesso")
-    @api.expect(modelo)
-    def put(self, id: str):
-        return PacoteDeServicosDb.alterar(str(id), request.json), 200
-
     def delete(self, id:str):
         return PacoteDeServicosDb.remover(str(id)), 200
