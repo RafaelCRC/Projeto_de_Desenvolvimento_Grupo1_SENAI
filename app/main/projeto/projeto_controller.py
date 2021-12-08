@@ -43,11 +43,6 @@ class ProjetoIdController(Resource):
     def get(self, id:str):
         return ProjetoDb.obter(str(id)), 200
 
-    @api.response(200, "Elemento atualizado com sucesso")
-    @api.expect(modelo)
-    def put(self, id: str):
-        return ProjetoDb.alterar(str(id), request.json), 200
-
     @api.response(200, "Elemento deletado com sucesso")
     def delete(self, id:str):
         return ProjetoDb.remover(str(id)), 200

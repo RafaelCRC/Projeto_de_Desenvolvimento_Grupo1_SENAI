@@ -38,22 +38,14 @@ class ContaIdController(Resource):
     def delete(self, id:str):
         return ContaDB.remover(str(id)), 200
 
-    @api.response(200, "Elemento atualizado com sucesso")
-    @api.expect(modelo)
-    def put(self, id: str):
-        return ContaDB.atualizar(str(id), request.json), 200
-
-@api.route('/Nome/<nome>')
+@api.route('/FindByConta/<nome>')
 class ContaNomeController(Resource):
     @api.response(200, "Busca realizada com sucesso")
     def get(self, nome:str):
         return ContaDB.obterContaPorNome(str(nome)), 200
 
-@api.route('/Email/<email>')
+@api.route('/FindByEmail/<email>')
 class ContaEmailController(Resource):
     @api.response(200, "Busca realizada com sucesso")
     def get(self, email:str):
         return ContaDB.obterContaPorEmail(str(email)), 200
-
-    def delete(self, email:str):
-        return ContaDB.deletarContaPorEmail(str(email)), 200

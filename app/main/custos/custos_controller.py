@@ -8,25 +8,16 @@ modelo = api.model('CustosModel', {
     'valor': fields.Float,
     'dataInicio': fields.String,
     'dataFim': fields.String,
+    'periodo': fields.Float,
     'descricao': fields.String,
     'deletedBy': fields.String,
     'deletedDate': fields.String
-})
-
-modelEdit = api.model('CustosEditModel', {
-    'valor': fields.Float,
-    'dataInicio': fields.String,
-    'dataFim': fields.String,
-    'descricao': fields.String,
 })
 
 
 @api.route('/')
 class CustosController(Resource):
     @api.response(200, "Found with success")
-    @api.param("descricao", "Buscar trecho de descricao")
-    @api.param("qtdItens", "Quantidade de itens por pagina")
-    @api.param("pagina", "Numero da pagina")
     def get(self):
         descricao = None
         qtdItens = None
@@ -63,8 +54,6 @@ class CustosCargoIdController(Resource):
 @api.route('/<inicio>/<fim>')
 class CustosDateController(Resource):
     @api.response(200, "Busca realizada com sucesso")
-    @api.param("qtdItens", "Quantidade de itens por pagina")
-    @api.param("pagina", "Numero da pagina")
     def get(self, inicio, fim):
         qtdItens = None
         pagina = None
@@ -83,10 +72,15 @@ class CustosIdController(Resource):
         return CustosDb.obter(id), 200
 
     @api.response(200, "Busca realizada com sucesso")
-    @api.expect(modelEdit)
+    @api.param('valor', 'Valor do Custo')
+    @api.param('dataInicio', 'Data de início do custo')
+    @api.param('dataFim', 'Data de término do custo')
+    @api.param('periodo', 'periodo do custo')
+    @api.param('descricao', 'Descrição do custo')
+    @api.param('deletedBy', 'Quem deletou o custo')
+    @api.param('deletedDate', 'Data de deleção do custo')
     def put(self, id):
         return CustosDb.alterar(id, request.json), 201
 
-    @api.response(200, "Remocao realizada com sucesso")
     def delete(self, id):
         return CustosDb.markAsRemoved(id), 200

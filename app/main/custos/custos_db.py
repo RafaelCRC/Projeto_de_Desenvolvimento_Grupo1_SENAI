@@ -11,6 +11,7 @@ class CustosDb:
             'valor': 54.20,
             'dataInicio': "1999-05-20",
             'dataFim': "1999-07-21",
+            'periodo': 2.5,
             'descricao': "Custo relativo à aquisição de material para o projeto delta",
             'deletedBy': "",
             'deletedDate': ""
@@ -20,6 +21,7 @@ class CustosDb:
             'valor': 175.00,
             'dataInicio': "2003-08-10",
             'dataFim': "2005-07-15",
+            'periodo': 20,
             'descricao': "Custo relativo ao pagamento dos funcionários do time 2",
             'deletedBy': "",
             'deletedDate': ""
@@ -29,6 +31,7 @@ class CustosDb:
             'valor': 700.50,
             'dataInicio': "2010-08-05",
             'dataFim': "2015-10-23",
+            'periodo': 36,
             'descricao': "Custo da confraternização anual da empresa",
             'deletedBy': "",
             'deletedDate': ""
@@ -131,6 +134,9 @@ class CustosDb:
 
         if novo_item.get('dataFim'):
             item['dataFim'] = novo_item.get('dataFim')
+
+        if novo_item.get('periodo'):
+            item['periodo'] = novo_item.get('periodo')
 
         if novo_item.get('descricao'):
             item['descricao'] = novo_item.get('descricao')

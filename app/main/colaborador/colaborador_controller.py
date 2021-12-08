@@ -3,7 +3,7 @@ from flask import request
 from app.main.colaborador.colaborador_db import ColaboradorDb
 
 api = Namespace('Colaborador', description="Gerenciamento de Colaboradores")
-modelo = api.model('ColaboradorModel', {
+modelo = api.model('CargosModel', {
     'id': fields.String,
     'cpf': fields.String,
     'nome': fields.String,
