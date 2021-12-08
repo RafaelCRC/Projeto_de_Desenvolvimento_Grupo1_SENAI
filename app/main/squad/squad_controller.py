@@ -44,6 +44,12 @@ class SquadIdController(Resource):
     def put(self, id):
         return SquadDb.alterar(id, request.json), 201
 
+@api.route('/projeto/<id>') #falta isso aq
+class SquadIdController(Resource):
+    @api.response(200, "Busca realizada com sucesso")
+    def get(self, id:str):
+        return SquadDb.obterProjeto(str(id)), 200
+
 
 @api.route('/FindByName/<nome>')
 class ProjetoNomeController(Resource):

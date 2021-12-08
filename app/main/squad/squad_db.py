@@ -1,3 +1,4 @@
+from app.main.projeto.projeto_db import ProjetoDb
 class SquadDb:
     items = [
         {
@@ -48,10 +49,10 @@ class SquadDb:
         return list
 
     @classmethod
-    def obterProjeto(cls, id=None):
+    def obterProjeto(ProjetoDb, id=None):
         if id:
-            return next(filter(lambda x: x['idProjeto'] is id, cls.items), {})
-        return cls.items
+            return next(filter(lambda x: x['idProjeto'] is id, ProjetoDb.items), {})
+        return ProjetoDb.items
 
     @classmethod
     def obterIdVaga(cls, id=None):
