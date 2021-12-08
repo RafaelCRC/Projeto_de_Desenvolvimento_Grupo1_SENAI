@@ -20,6 +20,14 @@ modelEdit = api.model('CustosEditModel', {
     'descricao': fields.String,
 })
 
+modelPost = api.model('CustosPostModel', {
+    'id': fields.String,
+    'valor': fields.Float,
+    'dataInicio': fields.String,
+    'dataFim': fields.String,
+    'descricao': fields.String,
+})
+
 
 @api.route('/')
 class CustosController(Resource):
@@ -41,7 +49,7 @@ class CustosController(Resource):
         '''if descricao is not None and descricao != '':'''
         return CustosDb.obter(None, descricao, qtdItens, pagina), 200
 
-    @api.expect(modelo)
+    @api.expect(modelPost)
     def post(self):
         return CustosDb.adicionar(request.json), 201
 
