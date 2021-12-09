@@ -8,6 +8,10 @@ modelo = api.model('SkillModel', {
     'descricao': fields.String
 })
 
+modelEdit = api.model('SkillsEditModel', {
+    'descricao': fields.String,
+})
+
 @api.route('/')
 class SkillsController(Resource):
     @api.response(200, "Found with success")
@@ -40,18 +44,6 @@ class SkillsQueryController(Resource):
         return SkillsDb.querySearch(str(query)), 200
 
 @api.route('/<id>')
-class SkillsIdController(Resource):
-    @api.response(200, "Busca realizada com sucesso")
-    def get(self, id:str):
-        return SkillsDb.obter(str(id)), 200
-
-@api.route('/colaborador/<id>')
-class ColaboradorSkillsIdController(Resource):
-    @api.response(200, "Busca realizada com sucesso")
-    def get(self, id):
-        return SkillsDb.colaboradorSkill(str(id)), 200
-
-@api.route('/<id>')
 class SkillsIdPutController(Resource):
     @api.param('id', 'Código da Skill')
     @api.param('descricao', 'Descrição da Skill')
@@ -59,6 +51,24 @@ class SkillsIdPutController(Resource):
         return SkillsDb.adicionar(str(id),request.json), 201
 
 @api.route('/<id>')
-class SkillsIdRemoveController(Resource):
-    def delete(self, id: str):
-        return SkillsDb.remover(str(id)), 200
+class SkillsIdController(Resource):
+    @api.response(200, "Busca realizada com sucesso")
+    def get(self, id:str):
+        return SkillsDb.obter(str(id)), 200
+
+    @api.response(200, "Busca realizada com sucesso")
+    @api.expect(modelEdit)
+    def put(self, id):
+        return SkillsDb.alterar(id, request.json), 201
+
+    @api.response(200, "Remocao realizada com sucesso")
+    def delete(self, id):
+        return SkillsDb.remover(id), 200
+
+@api.route('/colaborador/<id>')
+class ColaboradorSkillsIdController(Resource):
+    @api.response(200, "Busca realizada com sucesso")
+    def get(self, id):
+        return SkillsDb.colaboradorSkill(str(id)), 200
+
+
