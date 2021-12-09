@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e954c361-1172-45c7-b25f-8f312d3ab4ff" name="Changes" comment="Mudanças locais ricardo" />
+    <list default="true" id="e954c361-1172-45c7-b25f-8f312d3ab4ff" name="Changes" comment="Mudanças locais ricardo">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main/pacotedeservicos/pacotedeservicos_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/pacotedeservicos/pacotedeservicos_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main/pacotedeservicos/pacotedeservicos_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/pacotedeservicos/pacotedeservicos_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main/projeto/projeto_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/projeto/projeto_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main/squad/squad_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/squad/squad_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main/squad/squad_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/squad/squad_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main/vagas/vagas_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/vagas/vagas_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main/vagas/vagas_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/vagas/vagas_db.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

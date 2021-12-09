@@ -105,3 +105,19 @@ class VagasDB:
 
         cls.items[index] = item
         return item
+
+    @classmethod
+    def obterPorIdColaborador(cls, idColaborador=None, pagina=None, quantidade=None):
+        list = []
+        if not pagina:
+            pagina = 1
+        if idColaborador:
+            return next(filter(lambda x: x['idColaborador'] == idColaborador, cls.items), {})
+        else:
+            for i in cls.items:
+                list = cls.items
+        if quantidade:
+            inicio = (int(pagina) - 1) * int(quantidade)
+            fim = int(quantidade) + inicio
+            list = list[inicio: fim]
+        return list

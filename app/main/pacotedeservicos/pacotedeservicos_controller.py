@@ -47,4 +47,26 @@ class PacoteIdController(Resource):
         return PacoteDeServicosDb.remover(str(id)), 200
 
 
+@api.route('/SquadContratada/<idSquadContradada>')
+class PacoteIdSquadContratante(Resource):
+    @api.response(200, "Busca realizada com sucesso")
+    def get(self, idSquadContradada:str):
+        return PacoteDeServicosDb.obterPacotePorIdSquadContratada(str(idSquadContradada)), 200
+
+
+@api.route('/SquadContratante/<idSquadContratante>')
+class PacoteIdSquadContratada(Resource):
+    @api.response(200, "Busca realizada com sucesso")
+    def get(self, idSquadContratante:str):
+        return PacoteDeServicosDb.obterPacotePorIdSquadContratante(str(idSquadContratante)), 200
+
+@api.route('/Projeto/<idProjeto>')
+class PacoteProjetoSquad(Resource):
+    @api.response(200, "Busca realizada com sucesso")
+    def get(self, idProjeto:str):
+        return PacoteDeServicosDb.obterPacotePorIdProjeto(str(idProjeto)), 200
+
+
+
+
 

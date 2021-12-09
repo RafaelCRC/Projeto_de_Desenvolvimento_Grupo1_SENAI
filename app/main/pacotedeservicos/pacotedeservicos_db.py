@@ -28,6 +28,16 @@ class PacoteDeServicosDb:
             'idSquadContratante': '3',
             'idProjeto': '3'
 
+        },
+        {
+            'id': '4',
+            'descricao': 'Esse é o pacote de servicos 4',
+            'dataInicio': '12/02/2021',
+            'dataFim': '11/03/2021',
+            'idSquadContratada': '1',
+            'idSquadContratante': '3',
+            'idProjeto': '3'
+
         }
     ]
 
@@ -85,3 +95,48 @@ class PacoteDeServicosDb:
 
         cls.items[index] = item
         return item
+
+    @classmethod
+    def obterPacotePorIdSquadContratada(cls, idSquadContratada, pagina=None, quantidade=None):
+        list = []
+
+        for i in cls.items:
+            if idSquadContratada in i['idSquadContratada']:
+                list.append(i)
+        if not pagina:
+            pagina = 1
+        if quantidade:
+            inicio = (int(pagina) - 1) * int(quantidade)
+            fim = int(quantidade) + inicio
+            list = list[inicio: fim]
+        return list
+
+    @classmethod
+    def obterPacotePorIdSquadContratante(cls, idSquadContratante, pagina=None, quantidade=None):
+        list = []
+
+        for i in cls.items:
+            if idSquadContratante in i['idSquadContratante']:
+                list.append(i)
+        if not pagina:
+            pagina = 1
+        if quantidade:
+            inicio = (int(pagina) - 1) * int(quantidade)
+            fim = int(quantidade) + inicio
+            list = list[inicio: fim]
+        return list
+
+    @classmethod
+    def obterPacotePorIdProjeto(cls, idProjeto, pagina=None, quantidade=None):
+        list = []
+
+        for i in cls.items:
+            if idProjeto in i['idProjeto']:
+                list.append(i)
+        if not pagina:
+            pagina = 1
+        if quantidade:
+            inicio = (int(pagina) - 1) * int(quantidade)
+            fim = int(quantidade) + inicio
+            list = list[inicio: fim]
+        return list

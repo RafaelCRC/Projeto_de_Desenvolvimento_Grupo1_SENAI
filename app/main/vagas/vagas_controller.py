@@ -45,15 +45,19 @@ class VagasIdController(Resource):
     def put(self, id: str):
         return VagasDB.alterar(str(id), request.json), 200
 
-@api.route('/<idColaborador>')
+@api.route('/Colaborador/<idColaborador>')
 class VagasColaboradorIdController(Resource):
     @api.response(200, "Elemento atualizado com sucesso")
     @api.expect(modelo)
     def put(self, idColaborador: str):
         return VagasDB.alterarPorColaborador(str(idColaborador), request.json), 200
 
+    @api.response(200, "Busca realizada com sucesso")
+    def get(self, idColaborador: str):
+        return VagasDB.obterPorIdColaborador(str(idColaborador)), 200
+
 @api.route('/FindByStatus/<status>')
-class ProjetoNomeController(Resource):
+class VagaStatusController(Resource):
     @api.response(200, "Busca realizada com sucesso")
     def get(self, status:str):
         pagina = None

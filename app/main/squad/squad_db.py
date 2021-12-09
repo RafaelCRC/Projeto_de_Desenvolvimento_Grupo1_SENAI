@@ -21,7 +21,15 @@ class SquadDb:
             'nome': 'Squad 3',
             'id_projeto': '3',
             'idVagas': [
-                '99', '98', '97', '96', '95'
+                '99', '98', '97', '96', '13'
+            ],
+        },
+        {
+            'id': '4',
+            'nome': 'Squad 4',
+            'id_projeto': '2',
+            'idVagas': [
+                '45', '110', '71', '69', '645'
             ],
         }
     ]
@@ -41,6 +49,37 @@ class SquadDb:
         else:
             for i in cls.items:
                 list = cls.items
+        if quantidade:
+            inicio = (int(pagina) - 1) * int(quantidade)
+            fim = int(quantidade) + inicio
+            list = list[inicio: fim]
+        return list
+
+    @classmethod
+    def obterPorIdProjeto(cls, id_projeto=None, pagina=None, quantidade=None):
+        list = []
+
+        for i in cls.items:
+            if id_projeto in i['id_projeto']:
+                list.append(i)
+        if not pagina:
+            pagina = 1
+
+        if quantidade:
+            inicio = (int(pagina) - 1) * int(quantidade)
+            fim = int(quantidade) + inicio
+            list = list[inicio: fim]
+        return list
+
+    @classmethod
+    def obterProjetoPorIdVaga(cls, IdVaga, pagina=None, quantidade=None):
+        list = []
+
+        for i in cls.items:
+            if IdVaga in i['idVagas']:
+                list.append(i)
+        if not pagina:
+            pagina = 1
         if quantidade:
             inicio = (int(pagina) - 1) * int(quantidade)
             fim = int(quantidade) + inicio
@@ -85,3 +124,4 @@ class SquadDb:
 
         cls.items[index] = item
         return item
+

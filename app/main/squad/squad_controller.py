@@ -39,9 +39,30 @@ class SquadIdController(Resource):
     def delete(self, id:str):
         return SquadDb.remover(str(id)), 200
 
+    @api.response(200, "Atualizado com sucesso")
+    @api.expect(modelo)
+    def put(self, id):
+        return SquadDb.alterar(id, request.json), 201
+
+@api.route('/Projeto/<id_projeto>')
+class SquadProjetoIdController(Resource):
+    @api.response(200, "Busca realizada com sucesso")
+    def get(self, id_projeto:str):
+        return SquadDb.obterPorIdProjeto(str(id_projeto)), 200
+
 
 @api.route('/FindByName/<nome>')
 class ProjetoNomeController(Resource):
     @api.response(200, "Busca realizada com sucesso")
     def get(self, nome:str):
         return SquadDb.obterProjetoPorNome(str(nome)), 200
+
+
+@api.route('/Vaga/<idVaga>')
+class SquadVagaIdController(Resource):
+    @api.response(200, "Busca realizada com sucesso")
+    def get(self, idVaga:str):
+        return SquadDb.obterProjetoPorIdVaga(str(idVaga)), 200
+
+
+
