@@ -11,6 +11,9 @@ modelo = api.model('SkillModel', {
 @api.route('/')
 class SkillsController(Resource):
     @api.response(200, "Found with success")
+    @api.param("descricao", "Buscar trecho de descricao")
+    @api.param("qtdItens", "Quantidade de itens por pagina")
+    @api.param("pagina", "Numero da pagina")
     def get(self):
         descricao = None
         qtdItens = None
