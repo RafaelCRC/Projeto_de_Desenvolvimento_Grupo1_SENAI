@@ -58,8 +58,3 @@ class SkillsDb:
     def remover(cls, id):
         cls.items = list(filter(lambda x: x['id'] != id, cls.items))
         return {"mensagem": f"id {id} deletado com sucesso"}
-
-    @classmethod
-    def querySearch(cls, query):
-        if query:
-            return "busca da query"

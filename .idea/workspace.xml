@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e954c361-1172-45c7-b25f-8f312d3ab4ff" name="Changes" comment="Mudanças locais ricardo">
-      <change afterPath="$PROJECT_DIR$/app/main/skills/skills_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/main/skills/skills_db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="e954c361-1172-45c7-b25f-8f312d3ab4ff" name="Changes" comment="ajuste skills /2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main/colaborador/colaborador_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/colaborador/colaborador_controller.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +20,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="MIXED" />
   </component>
@@ -91,7 +91,35 @@
       <option name="project" value="LOCAL" />
       <updated>1637805420946</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Adição de Gerenciamento de Skills">
+      <created>1638910932458</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1638910932459</updated>
+    </task>
+    <task id="LOCAL-00003" summary="ajuste skills">
+      <created>1639015251166</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1639015251166</updated>
+    </task>
+    <task id="LOCAL-00004" summary="ajuste skills">
+      <created>1639017118184</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1639017118184</updated>
+    </task>
+    <task id="LOCAL-00005" summary="ajuste skills /2">
+      <created>1639018480410</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1639018480410</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -99,7 +127,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/grupo2" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -107,6 +147,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Mudanças locais ricardo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mudanças locais ricardo" />
+    <MESSAGE value="Adição de Gerenciamento de Skills" />
+    <MESSAGE value="ajuste skills" />
+    <MESSAGE value="ajuste skills /2" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajuste skills /2" />
   </component>
 </project>

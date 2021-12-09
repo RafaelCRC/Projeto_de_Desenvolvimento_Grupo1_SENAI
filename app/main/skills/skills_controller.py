@@ -37,12 +37,6 @@ class SkillsController(Resource):
     def post(self):
         return SkillsDb.adicionar(request.json),201
 
-@api.route('/query/<query>')
-class SkillsQueryController(Resource):
-    @api.response(200, "Busca realizada com sucesso")
-    def get(self, query:str):
-        return SkillsDb.querySearch(str(query)), 200
-
 @api.route('/<id>')
 class SkillsIdPutController(Resource):
     @api.param('id', 'Código da Skill')
