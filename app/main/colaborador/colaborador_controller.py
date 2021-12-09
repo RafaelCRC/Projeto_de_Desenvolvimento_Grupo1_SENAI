@@ -25,12 +25,11 @@ class PessoaController(Resource):
     def post(self):
         return ColaboradorDb.adicionar(request.json), 201
 
-
-@api.route('/query/<query>')
-class PessoaController(Resource):
-    @api.response(200, "Found with success")
-    def get(self, query:str):
-        return ColaboradorDb.querySearch(str(query)), 200
+@api.route('/cargo/<id>')
+class CargosAndSquadIdController(Resource):
+    @api.response(200, "Busca realizada com sucesso")
+    def get(self, id: int):
+        return ColaboradorDb.obter(str(id)), 200
 
 
 @api.route('/<id>')
@@ -40,16 +39,17 @@ class PessoaIdController(Resource):
         return ColaboradorDb.obter(str(id)), 200
 
 
-@api.route('/<id>')
-class PessoaIdController(Resource):
-    @api.param('id', 'Código identificador')
-    @api.param('nome', 'Nome do colaborador')
-    @api.param('cpf', "CPF do colaborador")
-    def put(self, id: str):
-        return ColaboradorDb.adicionar(str(id), request.json), 201
+
 
 @api.route('/<id>')
 class PessoaIdController(Resource):
+    def get(self, id: str):
+        return ColaboradorDb.obter(id=id, titulo=False), 200
+
+    @api.response(200, "Busca realizada com sucesso")
+    @api.expect(modelo)
+    def put(self, id):
+        return ColaboradorDb.alterar(id, request.json), 201
     def delete(self, id: str):
         return ColaboradorDb.remover(int(id)), 200
 
