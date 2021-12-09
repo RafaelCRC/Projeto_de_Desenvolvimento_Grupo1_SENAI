@@ -56,3 +56,32 @@ class PacoteDeServicosDb:
     def remover(cls, id):
         cls.items = list(filter(lambda x: x['id'] != id, cls.items))
         return {"mensagem": f"id {id} deletado com sucesso"}
+
+   @classmethod
+    def alterar(cls, id, novo_item:dict):
+        item = next(filter(lambda x: x['id'] == id,cls.items),{})
+        index = cls.items.index(item)
+
+        if novo_item.get('nome'):
+            item['nome'] = novo_item.get('nome')
+
+        if novo_item.get('descricao'):
+            item['descricao'] = novo_item.get('descricao')
+
+        if novo_item.get('dataInicio'):
+            item['dataInicio'] = novo_item.get('dataInicio')
+
+        if novo_item.get('dataFim'):
+            item['dataFim'] = novo_item.get('dataFim')
+
+        if novo_item.get('idSquadContratada'):
+            item['idSquadContratada'] = novo_item.get('idSquadContratada')
+
+        if novo_item.get('idSquadContratante'):
+            item['idSquadContratante'] = novo_item.get('idSquadContratante')
+
+        if novo_item.get('idProjeto'):
+            item['idProjeto'] = novo_item.get('idProjeto')
+
+        cls.items[index] = item
+        return item
