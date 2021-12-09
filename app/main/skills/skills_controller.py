@@ -8,10 +8,6 @@ modelo = api.model('SkillModel', {
     'descricao': fields.String
 })
 
-modelEdit = api.model('SkillsEditModel', {
-    'descricao': fields.String,
-})
-
 @api.route('/')
 class SkillsController(Resource):
     @api.response(200, "Found with success")
@@ -35,14 +31,7 @@ class SkillsController(Resource):
 
     @api.expect(modelo)
     def post(self):
-        return SkillsDb.adicionar(request.json),201
-
-@api.route('/<id>')
-class SkillsIdPutController(Resource):
-    @api.param('id', 'Código da Skill')
-    @api.param('descricao', 'Descrição da Skill')
-    def put(self, id:str):
-        return SkillsDb.adicionar(str(id),request.json), 201
+        return SkillsDb.adicionar(request.json), 201
 
 @api.route('/<id>')
 class SkillsIdController(Resource):
@@ -51,7 +40,7 @@ class SkillsIdController(Resource):
         return SkillsDb.obter(str(id)), 200
 
     @api.response(200, "Busca realizada com sucesso")
-    @api.expect(modelEdit)
+    @api.expect(modelo)
     def put(self, id):
         return SkillsDb.alterar(id, request.json), 201
 

@@ -49,8 +49,10 @@ class SkillsDb:
     def alterar(cls, id, novo_item: dict):
         item = next(filter(lambda x: x['id'] == id, cls.items), {})
         index = cls.items.index(item)
+
         if novo_item.get('descricao'):
             item['descricao'] = novo_item.get('descricao')
+
         cls.items[index] = item
         return item
 
